@@ -26,6 +26,7 @@ let
   };
 
   toolSpecToDerivation = toolSpec:
+    # todo remove hardcode for linux-amd here
     let
       targetVersionSpec = (builtins.elemAt toolSpec.versions 0).linux-amd64;
     in
@@ -68,6 +69,7 @@ let
       exportVarsWrapperArgsList = lib.attrsets.mapAttrsToList (name: value: "--set \"${name}\" \"${value}\"") exportVars;
     in
 
+    # todo remove check for linux here
     assert stdenv.system == "x86_64-linux";
 
     stdenv.mkDerivation rec {
